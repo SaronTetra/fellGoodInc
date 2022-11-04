@@ -16,4 +16,4 @@ jobs:
       uses: docker/build-push-action@v2.10.0
       with:
         push: true
-        tags: fellGoodInc:${{ github.run_number }}, fellGoodInc:latest
+        tags: fellgoodinc:${{ github.run_number }}, fellgoodinc:latest
