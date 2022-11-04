@@ -22,4 +22,4 @@ jobs:
       with:
         context: feel_good_inc_app
         push: true
-        tags: fellgoodinc:${{ github.run_number }}, fellgoodinc:latest
+        tags: sarontetra/fellgoodinc:${{ github.run_number }}, sarontetra/fellgoodinc:latest
