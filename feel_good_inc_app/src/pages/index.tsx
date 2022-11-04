@@ -592,17 +592,17 @@ function CarouselExample(): JSX.Element {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="..."
-          src="/public/vercel.svg"
+          src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="..."
-          src="/public/vercel.svg"
+          src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="..."
-          src="/public/vercel.svg"
+          src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
         />
       </Carousel>
     </div>
