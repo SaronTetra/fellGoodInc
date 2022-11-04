@@ -14,4 +14,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: /home/sarian/docker/fgi/deploy.sh
+          script: bash /home/sarian/docker/fgi/deploy.sh
