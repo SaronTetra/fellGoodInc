@@ -1,33 +1,5 @@
-import {
-  Accordion,
-  Alert,
-  Avatar,
-  Badge,
-  Breadcrumb,
-  Button,
-  Card,
-  Carousel,
-  Checkbox,
-  Dropdown,
-  Footer,
-  Label,
-  ListGroup,
-  Navbar,
-  Pagination,
-  Progress,
-  Rating,
-  Sidebar as FlowbiteSidebar,
-  Spinner,
-  Table,
-  Tabs,
-  TextInput,
-  Timeline,
-  Toast,
-  Tooltip,
-} from "flowbite-react";
+import { Carousel, Footer } from "flowbite-react";
 import Head from "next/head";
-import Image from "next/image";
-import React, { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
 import {
   BsDribbble,
@@ -37,25 +9,13 @@ import {
   BsTwitter,
 } from "react-icons/bs";
 import {
-  HiAdjustments,
-  HiArrowNarrowRight,
   HiArrowSmRight,
   HiChartPie,
-  HiCheck,
-  HiClipboardList,
-  HiCloudDownload,
-  HiDatabase,
-  HiExclamation,
-  HiEye,
-  HiHome,
   HiInbox,
-  HiOutlineAdjustments,
   HiShoppingBag,
   HiTable,
   HiUser,
-  HiUserCircle,
   HiViewBoards,
-  HiX,
 } from "react-icons/hi";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
@@ -166,49 +126,58 @@ function CarouselExample(): JSX.Element {
       <Carousel>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <div className="flex content-center justify-center h-max">
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
           />
         </div>
         <div className="flex content-center justify-center h-max">
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
           />
         </div>
         <div className="flex content-center justify-center h-max">
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-1/5 px-2"
+          <img
+            className="w-1/5 px-2"
             alt="..."
             src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
           />
@@ -221,16 +190,16 @@ function CarouselExample(): JSX.Element {
 function FooterExample(): JSX.Element {
   return (
     <Footer container>
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
-          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="#" icon={BsGithub} />
-            <Footer.Icon href="#" icon={BsDribbble} />
-          </div>
+      <div className="w-full sm:flex sm:items-center sm:justify-between">
+        <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
+        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+          <Footer.Icon href="#" icon={BsFacebook} />
+          <Footer.Icon href="#" icon={BsInstagram} />
+          <Footer.Icon href="#" icon={BsTwitter} />
+          <Footer.Icon href="#" icon={BsGithub} />
+          <Footer.Icon href="#" icon={BsDribbble} />
         </div>
+      </div>
     </Footer>
   );
 }
