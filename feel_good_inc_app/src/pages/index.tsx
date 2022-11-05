@@ -71,7 +71,7 @@ export default function Index(): JSX.Element {
       </Head>
       <SidebarProvider>
         <Header />
-        <div className="flex dark:bg-gray-900">
+        <div className="flex dark:bg-gray-900 h-screen w-screen">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
           </main>
@@ -143,7 +143,7 @@ function HomePage(): JSX.Element {
       <section>
         <header>
           <h2 className="mt-9 mb-3 text-4xl font-bold dark:text-gray-200">
-            Carousel
+            Top Events
           </h2>
         </header>
         <CarouselExample />
