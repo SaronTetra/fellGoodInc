@@ -31,7 +31,7 @@ export default function Index(): JSX.Element {
       </Head>
       <SidebarProvider>
         <Header />
-        <div className="flex dark:bg-gray-900 w-full">
+        <div className="flex w-full dark:bg-gray-900">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
           </main>
@@ -96,7 +96,7 @@ function HomePage(): JSX.Element {
       </section>
       <section>
         <header>
-          <h2 className="mt-9 mb-3 text-4xl font-bold dark:text-gray-200">
+          <h2 className="mb-3 text-4xl font-bold mt-9 dark:text-gray-200">
             Top Events
           </h2>
         </header>
@@ -107,7 +107,7 @@ function HomePage(): JSX.Element {
       </section>
       <section>
         <header>
-          <h2 className="mt-9 mb-3 text-4xl font-bold dark:text-gray-200">
+          <h2 className="mb-3 text-4xl font-bold mt-9 dark:text-gray-200">
             Events
           </h2>
         </header>
@@ -156,7 +156,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-12 space-y-3 ">
                 <label
                   htmlFor="name"
-                  className="py-4  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-4 mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Name
                 </label>
@@ -171,7 +171,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-14 ">
                 <label
                   htmlFor="email"
-                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                 >
                   User
                 </label>
@@ -186,7 +186,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-14 ">
                 <label
                   htmlFor="date"
-                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                 >
                   Date
                 </label>
@@ -201,7 +201,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-14 ">
                 <label
                   htmlFor="where"
-                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                 >
                   City
                 </label>
@@ -213,10 +213,10 @@ function ModalNewElement(): JSX.Element {
                   required
                 ></input>
               </div>
-              <div className="flex  space-x-7">
+              <div className="flex space-x-7">
                 <label
                   htmlFor="competence"
-                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                 >
                   Address{" "}
                 </label>
@@ -231,7 +231,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-12">
                 <label
                   htmlFor="photo"
-                  className=" py-2 block  mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                 >
                   Background photo
                 </label>
@@ -239,13 +239,13 @@ function ModalNewElement(): JSX.Element {
                   type="file"
                   name="photo"
                   id="photo"
-                  className=" px-5"
+                  className="px-5 "
                 ></input>
               </div>
               <div className="flex space-x-10 space-y-3 ">
                   <label
                     htmlFor="email"
-                    className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    className="block py-2 mb-1 text-sm font-medium text-gray-900  dark:text-gray-300"
                   >
                     Is public?
                   </label>
@@ -255,7 +255,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-2">
                 <label
                   htmlFor="description"
-                  className="py-10 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="block py-10 mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Description
                 </label>
@@ -292,9 +292,9 @@ async function sendModal(modalObject: any) {
 function FooterExample(): JSX.Element {
   return (
     <Footer container>
-      <div className="w-full sm:flex sm:items-center sm:justify-between mb-0 pb-0">
-        <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
-        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+      <div className="w-full pb-0 mb-0 sm:flex sm:items-center sm:justify-between">
+        <Footer.Copyright href="#" by="Proteus Believers" year={2022} />
+        <div className="flex mt-4 space-x-6 sm:mt-0 sm:justify-center">
           <Footer.Icon href="#" icon={BsFacebook} />
           <Footer.Icon href="#" icon={BsInstagram} />
           <Footer.Icon href="#" icon={BsTwitter} />
