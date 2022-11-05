@@ -55,7 +55,7 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={HiPlus}>
             AddUser
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiArrowSmRight}>
+          <Sidebar.Item href="login" icon={HiArrowSmRight}>
             Sign In
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
