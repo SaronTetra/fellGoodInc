@@ -47,10 +47,7 @@ const Header: FC<Record<string, never>> = function () {
           </button>
         )}
         <Navbar.Brand href="/">
-          <Image alt="Flowbite logo" height="24" src="/LOGO.png" width="24" />
-          <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
-            FeelGoodInc
-          </span>
+          <Image alt="Flowbite logo" height="48" src="/LOGO.png" width="120" />
         </Navbar.Brand>
         <div className="flex md:order-2">
           <DarkThemeToggle />
