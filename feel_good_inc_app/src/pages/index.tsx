@@ -1,5 +1,11 @@
-import {Carousel, Footer} from "flowbite-react";
+import {
+  Button,
+  Carousel,
+  Footer,
+  Modal,
+} from "flowbite-react";
 import Head from "next/head";
+import { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
 import {
   BsDribbble,
@@ -59,6 +65,9 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={HiTable}>
             Sign Up
           </Sidebar.Item>
+          <Sidebar.Item href="#" icon={HiTable} >
+            Add New Event
+          </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
           <Sidebar.Item href="#" icon={HiChartPie}>
@@ -100,10 +109,11 @@ function HomePage(): JSX.Element {
       <section>
         <header>
           <h2 className="mt-9 mb-3 text-4xl font-bold dark:text-gray-200">
-            Footer
+            Events
           </h2>
         </header>
-        <FooterExample />
+        <ModalNewElement />
+        <FooterExample/>
       </section>
     </>
   );
@@ -175,6 +185,167 @@ function CarouselExample(): JSX.Element {
     </div>
   );
 }
+function ModalNewElement(): JSX.Element {
+  const [isOpen, setOpen] = useState(false);
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    console.log(event)
+   
+    const form=JSON.stringify({
+      
+      name: event.target.name.value,
+      org:Math.floor(Math.random() * 1000),
+      description:event.target.description.value,
+      image:event.target.photo.value,
+      city:event.target.where.value,
+      address: event.target.adres.value,
+      categories:[event.target.email.value]
+
+
+    })
+    console.log(form);
+   
+    const results=sendModal(form);
+    console.log(results)
+   
+  };
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Set new events</Button>
+      <Modal show={isOpen} onClose={() => setOpen(false)}>
+        <Modal.Header>CreateEvent</Modal.Header>
+        <form onSubmit={handleSubmit}>
+        <Modal.Body>
+            <div className="space-y-3">
+              <div className="flex space-x-12 space-y-3 ">
+                <label
+                  htmlFor="name"
+                  className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-12 ">
+                <label
+                  htmlFor="email"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-14 ">
+                <label
+                  htmlFor="date"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-14 ">
+                <label
+                  htmlFor="where"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  City
+                </label>
+                <input
+                  type="text"
+                  name="where"
+                  id="where"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex  space-x-7">
+                <label
+                  htmlFor="competence"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Address{" "}
+                </label>
+                <input
+                  type="text"
+                  name="adres"
+                  id="adres"
+                  className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                ></input>
+              </div>
+
+              <div className="flex space-x-12">
+                <label
+                  htmlFor="photo"
+                  className=" py-2 block  mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Background photo
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  className=" px-5"
+                ></input>
+              </div>
+
+        
+              
+              <div className="flex space-x-2">
+                <label
+                  htmlFor="description"
+                  className="py-10 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  id="description"
+                  rows={5}
+                  className="bg-gray-50 border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500"
+                ></textarea>
+              </div>
+            </div>
+           </Modal.Body>
+<Modal.Footer>
+          <Button type="submit"
+          >
+            Submit
+          </Button>
+          </Modal.Footer>
+        </form>
+      </Modal>
+    </>
+  );
+}
+ async function sendModal(modalObject:any) {
+  const res = fetch("/api/createEvent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: modalObject,
+  });
+  const result =   await (await res).json();
+  console.log(result);
+}
+
 
 function FooterExample(): JSX.Element {
   return (
