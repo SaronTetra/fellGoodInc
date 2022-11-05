@@ -1,0 +1,42 @@
+{
+  "events": [
+    {
+      "entityId": "id",
+      "id": 1,
+      "name": "Event Name",
+      "org": 1,
+      "description": "Evenet description",
+      "image": "image_url",
+      "city": "City",
+      "address": "Address",
+      "attendees": 3,
+      "isHidden": false,
+      "categories": ["cat1", "cat2"]
+    },
+    {
+      "entityId": "id2",
+      "id": 2,
+      "name": "Event Name 2",
+      "org": 1,
+      "description": "Evenet description w",
+      "image": "image_url",
+      "city": "City",
+      "address": "Address",
+      "attendees": 3,
+      "isHidden": false,
+      "categories": ["cat1", "cat2"]},
+    {      
+      "entityId": "id3",
+      "id": 3,
+      "name": "Event Name 3",
+      "org": 1,
+      "description": "Evenet description 3",
+      "image": "image_url",
+      "city": "City",
+      "address": "Address",
+      "attendees": 3,
+      "isHidden": false,
+      "categories": ["cat1", "cat2"]
+    }
+  ]
+}
