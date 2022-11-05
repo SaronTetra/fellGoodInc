@@ -45,16 +45,16 @@ const EventsCarousel: FC<Event> = () => {
                 alt="..."
                 src={images[index]?.["download_url"]}
               />
-              <div className="dark:text-gray-400 w-1/2 flex flex-col mt-20 pt-20 ml-10">
-                <h1 className="text-4xl mb-10">{event.name}</h1>
+              <div className="dark:text-gray-400 w-1/2 flex flex-col mt-8 ml-10">
+                <h1 className="text-4xl mb-15">{event.name}</h1>
                 <p>{event.description}</p>
-                <h5 className="text-xl mb-10">Adres: {event.city} {event.address}</h5>
+                <h5 className="text-xl mb-2">Adres: {event.city} {event.address}</h5>
                 <p className="text-xs mb-4">Number of attendees: {event.attendees}</p>
-                <div className="flex flex-col">
-                  <div className="w-2/3 flex flex-col">
+                <div className="flex flex-row content-evenly">
+                  <div className="w-auto pr-5">
                     <Button onClick={() => addAttednees(event)} >Sign up</Button>
                   </div>
-                  <div className="w-2/3 flex flex-col">
+                  <div className="w-auto pr-5">
                     <Button color={"gray"} onClick={() => hideEvent(event)}>Hide</Button>
                   </div>
                 </div>
