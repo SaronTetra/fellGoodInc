@@ -46,10 +46,10 @@ const EventsCarousel: FC<Event> = () => {
                 <p className="text-xs mb-4">Number of attendees: {event.attendees}</p>
                 <div className="flex flex-col">
                   <div className="w-2/3 flex flex-col">
-                    <Button >Sign up</Button>
+                    <Button onClick={() => addAttednees(event)} >Sign up</Button>
                   </div>
                   <div className="w-2/3 flex flex-col">
-                    <Button color={"gray"} >Hide</Button>
+                    <Button color={"gray"} onClick={() => hideEvent(event)}>Hide</Button>
                   </div>
                 </div>
 
@@ -62,5 +62,25 @@ const EventsCarousel: FC<Event> = () => {
     </div>
   );
 };
+
+async function addAttednees(event: any) {
+  const res = fetch("/api/addAttendee", {
+    method: "POST",
+    body: event.entityId,
+  });
+  const result = await (await res).json();
+  console.log(result);
+  window.location.reload()
+}
+
+async function hideEvent(event: any) {
+  const res = fetch("/api/hideEvent", {
+    method: "POST",
+    body: event.entityId,
+  });
+  const result = await (await res).json();
+  console.log(result);
+  window.location.reload()
+}
 
 export default EventsCarousel;
