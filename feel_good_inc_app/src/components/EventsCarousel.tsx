@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import { GetServerSideProps } from "next";
 import { FC } from "react";
 
 type Events = {
@@ -6,6 +7,7 @@ type Events = {
 }
 
 type Event = {
+  entityId: string
   id: number,
   name: string,
   org: number,
@@ -16,7 +18,7 @@ type Event = {
   categories: string[],
 }
 
-const EventsCarousel: FC<Events> = function ({ events }): JSX.Element {
+const EventsCarousel: FC<Events> = ({events = []}) => {
     return (
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
       <Carousel>
@@ -39,7 +41,7 @@ const EventsCarousel: FC<Events> = function ({ events }): JSX.Element {
     );
   };
 
-  export async function getStaticProps() {
+  export const getServerSideProps: GetServerSideProps = async (_context) => {
     const res = await fetch('/api/events')
     const events = await res.json()
   
