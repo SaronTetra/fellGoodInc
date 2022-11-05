@@ -6,6 +6,6 @@ describe('Login', () => {
       cy.get('input#email').type('abc.def@asd.fgh')
       cy.get('input#password').type('password')
       cy.contains('Submit').click()
-      cy.contains('Feel Good')
+      cy.contains('Feels Good')
     })
   })

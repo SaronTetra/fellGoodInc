@@ -10,7 +10,7 @@ export default function Help():JSX.Element{
     return(
         <div  style={{width:"400px", margin:"auto",paddingTop:"5%"
     }} >
-         <title>Feel Good Inc</title>
+         <title>Feels Good</title>
               <Image
     
     src={product_1}
