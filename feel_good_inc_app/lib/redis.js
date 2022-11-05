@@ -88,6 +88,19 @@ export async function getAllEvents() {
   return events;
 }
 
+export async function getVisibleEvents() {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const events = await eventRepository
+    .search()
+    .where("isHidden")
+    .false()
+    .return.all();
+
+  return events;
+}
+
 export async function createEvent(data) {
   await connect();
 
