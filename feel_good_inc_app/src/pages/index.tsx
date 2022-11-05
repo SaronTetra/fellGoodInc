@@ -1,14 +1,14 @@
-import { Button, Carousel, DarkThemeToggle, Footer, Modal } from "flowbite-react";
+import { Button, Carousel, DarkThemeToggle,  Modal } from "flowbite-react";
 import Head from "next/head";
 import { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
-import {
-  BsDribbble,
-  BsFacebook,
-  BsGithub,
-  BsInstagram,
-  BsTwitter,
-} from "react-icons/bs";
+// import {
+//   BsDribbble,
+//   BsFacebook,
+//   BsGithub,
+//   BsInstagram,
+//   BsTwitter,
+// } from "react-icons/bs";
 import {
   HiArrowSmRight,
   HiChartPie,
@@ -230,22 +230,22 @@ function ModalNewElement(): JSX.Element {
  );
 }
 
-function FooterExample(): JSX.Element {
-  return (
-    <Footer container>
-      <div className="w-full sm:flex sm:items-center sm:justify-between">
-        <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
-        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-          <Footer.Icon href="#" icon={BsFacebook} />
-          <Footer.Icon href="#" icon={BsInstagram} />
-          <Footer.Icon href="#" icon={BsTwitter} />
-          <Footer.Icon href="#" icon={BsGithub} />
-          <Footer.Icon href="#" icon={BsDribbble} />
-        </div>
-      </div>
-    </Footer>
-  );
-}
+// function FooterExample(): JSX.Element {
+//   return (
+//     <Footer container>
+//       <div className="w-full sm:flex sm:items-center sm:justify-between">
+//         <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
+//         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+//           <Footer.Icon href="#" icon={BsFacebook} />
+//           <Footer.Icon href="#" icon={BsInstagram} />
+//           <Footer.Icon href="#" icon={BsTwitter} />
+//           <Footer.Icon href="#" icon={BsGithub} />
+//           <Footer.Icon href="#" icon={BsDribbble} />
+//         </div>
+//       </div>
+//     </Footer>
+//   );
+// }
 
 
 
