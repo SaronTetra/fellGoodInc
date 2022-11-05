@@ -16,6 +16,7 @@ import {
   HiViewBoards,
 } from "react-icons/hi";
 import EventsCarousel from "../components/EventsCarousel";
+import About from "../components/About";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
 
@@ -95,7 +96,10 @@ function HomePage(): JSX.Element {
             Top Events
           </h2>
         </header>
-        <EventsCarousel events={[]} />
+        {/* <EventsCarousel /> */}
+      </section>
+      <section>
+        <About />
       </section>
       <section>
         <header>
