@@ -222,7 +222,7 @@ function ModalNewElement(): JSX.Element {
                        <input type="file" name="photo" id="photo" className=" px-5" ></input>
                   </div>
                    
-                   <div className="flex space-x-0">
+                   <div className="flex ">
                        <label htmlFor="type" className=" py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">How many people</label>
                        <input type="text" name="type" id="type" className="clear-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ></input>
                    </div>
