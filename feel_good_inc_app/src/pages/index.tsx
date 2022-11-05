@@ -1,8 +1,6 @@
-import { randomInt } from "crypto";
 import {
   Button,
   Carousel,
-  DarkThemeToggle,
   Footer,
   Modal,
 } from "flowbite-react";
@@ -23,7 +21,6 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
-import {createEvent} from "../../lib/redis";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
 import Header from "../components/header";
@@ -112,10 +109,11 @@ function HomePage(): JSX.Element {
       <section>
         <header>
           <h2 className="mt-9 mb-3 text-4xl font-bold dark:text-gray-200">
-            Footer
+            Events
           </h2>
         </header>
         <ModalNewElement />
+        <FooterExample/>
       </section>
     </>
   );
@@ -338,7 +336,6 @@ function ModalNewElement(): JSX.Element {
   );
 }
  async function sendModal(modalObject:any) {
-  console.log(modalObject)
   const res = fetch("/api/createEvent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
