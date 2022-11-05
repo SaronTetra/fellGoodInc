@@ -68,13 +68,22 @@ let categorySchema = new Schema(
 export async function createEventIndex() {
   await connect();
 
-  const eventRepository = new Repository(eventSchema, client);
+  const eventRepository = client.fetchRepository(eventSchema);
   await eventRepository.createIndex();
 }
 
 export async function getAllEvents() {
   await connect();
 
-  const eventRepository = new Repository(eventSchema, client);
+  const eventRepository = client.fetchRepository(eventSchema);
   const events = await eventRepository.search().return.all();
+}
+
+export async function createEvent(data) {
+    await connect();
+
+    const eventRepository = client.fetchRepository(eventSchema);
+    const event = eventRepository.createEntity(data);
+    const id = await eventRepository.save(event);
+    return id;
 }
