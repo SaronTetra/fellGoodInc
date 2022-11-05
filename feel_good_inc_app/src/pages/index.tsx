@@ -1,4 +1,4 @@
-import {Carousel, DarkThemeToggle, Footer} from "flowbite-react";
+import {Carousel, Footer} from "flowbite-react";
 import Head from "next/head";
 import { BiBuoy } from "react-icons/bi";
 import {
@@ -17,6 +17,7 @@ import {
 } from "react-icons/hi";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
+import Header from "../components/header";
 
 export default function Index(): JSX.Element {
   return (
@@ -27,6 +28,7 @@ export default function Index(): JSX.Element {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <SidebarProvider>
+        <Header/>
         <div className="flex dark:bg-gray-900 h-screen w-screen">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
@@ -68,7 +70,6 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={BiBuoy}>
             Help
           </Sidebar.Item>
-          <DarkThemeToggle />
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
