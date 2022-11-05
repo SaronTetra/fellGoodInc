@@ -1,9 +1,4 @@
-import {
-  Button,
-  Carousel,
-  Footer,
-  Modal,
-} from "flowbite-react";
+import { Button, Footer, Modal } from "flowbite-react";
 import Head from "next/head";
 import { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
@@ -21,9 +16,10 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
+import EventsCarousel from "../components/EventsCarousel";
+import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
-import Header from "../components/header";
 
 export default function Index(): JSX.Element {
   return (
@@ -34,7 +30,7 @@ export default function Index(): JSX.Element {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <SidebarProvider>
-        <Header/>
+        <Header />
         <div className="flex dark:bg-gray-900 h-screen w-screen">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
@@ -65,7 +61,7 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={HiTable}>
             Sign Up
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiTable} >
+          <Sidebar.Item href="#" icon={HiTable}>
             Add New Event
           </Sidebar.Item>
         </Sidebar.ItemGroup>
@@ -104,7 +100,10 @@ function HomePage(): JSX.Element {
             Top Events
           </h2>
         </header>
-        <CarouselExample />
+        {/* <EventsCarousel /> */}
+      </section>
+      <section>
+        <EventsCarousel entityId={""} id={0} name={""} org={0} description={""} image={""} city={""} address={""} categories={[]} />
       </section>
       <section>
         <header>
@@ -113,101 +112,31 @@ function HomePage(): JSX.Element {
           </h2>
         </header>
         <ModalNewElement />
-        <FooterExample/>
+        <FooterExample />
       </section>
     </>
   );
 }
 
-function CarouselExample(): JSX.Element {
-  return (
-    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-      <Carousel>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <div className="flex content-center justify-center h-max">
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          />
-        </div>
-        <div className="flex content-center justify-center h-max">
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          />
-        </div>
-        <div className="flex content-center justify-center h-max">
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          />
-        </div>
-      </Carousel>
-    </div>
-  );
-}
 function ModalNewElement(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(event)
-   
-    const form=JSON.stringify({
-      
+    console.log(event);
+
+    const form = JSON.stringify({
       name: event.target.name.value,
-      org:Math.floor(Math.random() * 1000),
-      description:event.target.description.value,
-      image:event.target.photo.value,
-      city:event.target.where.value,
+      org: Math.floor(Math.random() * 1000),
+      description: event.target.description.value,
+      image: event.target.photo.value,
+      city: event.target.where.value,
       address: event.target.adres.value,
-      categories:[event.target.email.value]
-
-
-    })
+      categories: [event.target.email.value],
+    });
     console.log(form);
-   
-    const results=sendModal(form);
-    console.log(results)
-   
+
+    const results = sendModal(form);
+    console.log(results);
   };
   return (
     <>
@@ -215,7 +144,7 @@ function ModalNewElement(): JSX.Element {
       <Modal show={isOpen} onClose={() => setOpen(false)}>
         <Modal.Header>CreateEvent</Modal.Header>
         <form onSubmit={handleSubmit}>
-        <Modal.Body>
+          <Modal.Body>
             <div className="space-y-3">
               <div className="flex space-x-12 space-y-3 ">
                 <label
@@ -307,8 +236,6 @@ function ModalNewElement(): JSX.Element {
                 ></input>
               </div>
 
-        
-              
               <div className="flex space-x-2">
                 <label
                   htmlFor="description"
@@ -324,28 +251,24 @@ function ModalNewElement(): JSX.Element {
                 ></textarea>
               </div>
             </div>
-           </Modal.Body>
-<Modal.Footer>
-          <Button type="submit"
-          >
-            Submit
-          </Button>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="submit">Submit</Button>
           </Modal.Footer>
         </form>
       </Modal>
     </>
   );
 }
- async function sendModal(modalObject:any) {
+async function sendModal(modalObject: any) {
   const res = fetch("/api/createEvent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: modalObject,
   });
-  const result =   await (await res).json();
+  const result = await (await res).json();
   console.log(result);
 }
-
 
 function FooterExample(): JSX.Element {
   return (

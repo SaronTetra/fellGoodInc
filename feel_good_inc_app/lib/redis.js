@@ -4,7 +4,7 @@ import { Client, Entity, Schema } from "redis-om";
 const client = new Client();
 
 async function connect() {
-  console.log(client)
+  console.log(client);
   if (!client.isOpen()) {
     await client.open(process.env.REDIS_URL);
   }
@@ -92,8 +92,8 @@ export async function createEvent(data) {
 
   const eventRepository = client.fetchRepository(eventSchema);
   const event = eventRepository.createEntity(data);
-  console.log(event)
-  console.log("qwe")
+  console.log(event);
+  console.log("qwe");
   const id = await eventRepository.save(event);
   return id;
 }
