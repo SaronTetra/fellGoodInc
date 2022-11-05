@@ -71,6 +71,13 @@ export async function createEventIndex() {
   await eventRepository.createIndex();
 }
 
+export async function createCategoryIndex() {
+  await connect();
+
+  const categoryRepository = client.fetchRepository(categorySchema);
+  await categoryRepository.createIndex();
+}
+
 export async function getAllEvents() {
   await connect();
 
@@ -113,4 +120,13 @@ export async function createCategory(data) {
   const category = categoryRepository.createEntity(data);
   const id = await categoryRepository.save(category);
   return id;
+}
+
+export async function getAllCategories() {
+  await connect();
+
+  const categoryRepository = client.fetchRepository(categorySchema);
+  const categories = await categoryRepository.search().return.all();
+
+  return categories;
 }
