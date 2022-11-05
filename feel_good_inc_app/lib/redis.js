@@ -77,6 +77,8 @@ export async function getAllEvents() {
 
   const eventRepository = client.fetchRepository(eventSchema);
   const events = await eventRepository.search().return.all();
+
+  return events;
 }
 
 export async function createEvent(data) {
