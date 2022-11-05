@@ -15,8 +15,15 @@ type Event = {
 
 const EventsCarousel: FC<Event> = () => {
   const [events, setEvents] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
+    fetch("https://picsum.photos/v2/list").then((res) => {
+      res.json().then((data) => {
+        console.log(data);
+        setImages(data);
+      });
+    });
     fetch("/api/events").then((res) => {
       res.json().then((data) => {
         console.log(data);
@@ -28,15 +35,14 @@ const EventsCarousel: FC<Event> = () => {
   return (
     <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
       <Carousel>
-        {events.map((event: Event) => (
+        {events.map((event: Event, index) => (
           <div className="flex content-center justify-center h-max">
             <div className="flex content-center justify-center h-max">
               <img
                 className="w-1/2 h-3/6 px-2 pb-3"
                 alt="..."
-                src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
+                src={images[index]?.["download_url"]}
               />
-
               <div className="dark:text-gray-400 w-1/2 flex flex-col mt-20 pt-20 ml-10">
                 <h1 className="text-4xl">{event.name}</h1>
                 <p>{event.description}</p>
