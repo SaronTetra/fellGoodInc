@@ -1,5 +1,6 @@
 
 import Image from 'next/image'
+import product_1 from '../../assets/logo.png';
 import { useRouter } from 'next/router';
 
 export default function Index(): JSX.Element {
@@ -12,13 +13,13 @@ export default function Index(): JSX.Element {
    
     return (
         
-      <div  style={{width:"300px", margin:"auto",paddingTop:"20%"
+      <div  style={{width:"300px", margin:"auto",paddingTop:"2%"
    }} >
        <Image
     
-    src="https://img.freepik.com/darmowe-wektory/ilustracja-drzenie-rak-umowy_53876-5892.jpg?size=626&ext=jpg&ga=GA1.2.1322183877.1667641163&semt=sph"
-    width={2250}
-    height={1390}
+    src={product_1}
+    width={1250}
+    height={1250}
     layout="responsive"
 />
        <form  onSubmit={ redirect}>
