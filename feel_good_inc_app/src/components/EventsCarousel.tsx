@@ -1,4 +1,4 @@
-import { Carousel } from "flowbite-react";
+import { Carousel, Button } from "flowbite-react";
 import { FC, useEffect, useState } from "react";
 
 type Event = {
@@ -30,14 +30,18 @@ const EventsCarousel: FC<Event> = () => {
       <Carousel>
         {events.map((event: Event) => (
           <div className="flex content-center justify-center h-max">
-            <div>
+            <div className="flex content-center justify-center h-max">
               <img
-                className="w-auto h-3/6 px-2 pb-3"
+                className="w-1/2 h-3/6 px-2 pb-3"
                 alt="..."
                 src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
               />
-              <div className="text-gray-200 h-2/6">
-                <h1>{event.name}</h1>
+
+              <div className="dark:text-gray-400 w-1/2 flex flex-col mt-20 pt-20 ml-10">
+                <h1 className="text-4xl">{event.name}</h1>
+                <p>{event.description}</p>
+                <h5 className="text-xl">{event.city} {event.address}</h5>
+                <Button >Sign up</Button>
               </div>
             </div>
           </div>
