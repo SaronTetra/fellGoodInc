@@ -20,6 +20,7 @@ import {
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
+import Image from "next/image";
 
 export default function Index(): JSX.Element {
   return (
@@ -125,25 +126,40 @@ function CarouselExample(): JSX.Element {
   return (
     <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
       <Carousel>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <div className="flex content-center justify-center h-max">
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          />{" "}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          />
+      <div className="flex content-center justify-center h-max px-10">
+            <div className="px-3">
+              <Image
+                width={150}
+                height={150}
+                alt="..."
+                src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
+              />
+              <div className="dark:text-gray-200">
+                <h1>Event 1</h1>
+              </div>
+            </div>
+            <div className="px-3">
+              <Image
+                width={150}
+                height={150}
+                alt="..."
+                src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
+              />
+              <div className="dark:text-gray-200">
+                <h1>Event 1</h1>
+              </div>
+            </div>
+            <div className="px-3">
+              <Image
+                width={150}
+                height={150}
+                alt="..."
+                src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
+              />
+              <div className="dark:text-gray-200">
+                <h1>Event 1</h1>
+              </div>
+            </div>
         </div>
         <div className="flex content-center justify-center h-max">
           <img
