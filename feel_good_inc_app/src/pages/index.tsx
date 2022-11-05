@@ -66,7 +66,7 @@ function ActualSidebar(): JSX.Element {
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiChartPie}>
+          <Sidebar.Item href="premium" icon={HiChartPie}>
             Upgrade to Pro
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiViewBoards}>
