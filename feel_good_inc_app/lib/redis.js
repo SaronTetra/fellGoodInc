@@ -4,7 +4,6 @@ import { Client, Entity, Schema } from "redis-om";
 const client = new Client();
 
 async function connect() {
-  console.log(client);
   if (!client.isOpen()) {
     await client.open(process.env.REDIS_URL);
   }
@@ -31,7 +30,7 @@ let eventSchema = new Schema(
   Event,
   {
     name: { type: "text" },
-    org: { type: "number" },
+    org: { type: "string" },
     description: { type: "text" },
     image: { type: "string" },
     city: { type: "text" },
@@ -46,7 +45,7 @@ let eventSchema = new Schema(
 let reviewSchema = new Schema(
   Review,
   {
-    eventId: { type: "number" },
+    eventId: { type: "string" },
     review: { type: "number" },
   },
   {
@@ -92,8 +91,6 @@ export async function createEvent(data) {
 
   const eventRepository = client.fetchRepository(eventSchema);
   const event = eventRepository.createEntity(data);
-  console.log(event);
-  console.log("qwe");
   const id = await eventRepository.save(event);
   return id;
 }
@@ -129,4 +126,13 @@ export async function getAllCategories() {
   const categories = await categoryRepository.search().return.all();
 
   return categories;
+}
+
+export async function createUser(data) {
+  await connect();
+
+  const userRepository = client.fetchRepository(userSchema);
+  const user = userRepository.createEntity(data);
+  const id = await userRepository.save(user);
+  return id;
 }
