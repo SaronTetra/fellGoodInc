@@ -103,7 +103,7 @@ function HomePage(): JSX.Element {
         {/* <EventsCarousel /> */}
       </section>
       <section>
-        <EventsCarousel entityId={""} id={0} name={""} org={0} description={""} image={""} city={""} address={""} categories={[]} />
+        <EventsCarousel entityId={""} id={0} name={""} org={0} description={""} image={""} city={""} address={""} categories={[]} attendees={0} isHidden={false} />
       </section>
       <section>
         <header>
@@ -120,9 +120,13 @@ function HomePage(): JSX.Element {
 
 function ModalNewElement(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const handleChange = (ev:any) => { setChecked(!checked); }
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     console.log(event);
+    console.log("halo");
+    console.log(event.target.remember.value);
 
     const form = JSON.stringify({
       name: event.target.name.value,
@@ -132,6 +136,8 @@ function ModalNewElement(): JSX.Element {
       city: event.target.where.value,
       address: event.target.adres.value,
       categories: [event.target.email.value],
+      attendees:0,
+      isHidden: event.target.remember.value=="true"
     });
     console.log(form);
 
@@ -236,7 +242,16 @@ function ModalNewElement(): JSX.Element {
                   className=" px-5"
                 ></input>
               </div>
-
+              <div className="flex space-x-10 space-y-3 ">
+                  <label
+                    htmlFor="email"
+                    className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Is public?
+                  </label>
+                  <input id="remember" type="checkbox" checked={checked} 
+               onChange={handleChange} className="py-0" ></input>
+                </div>
               <div className="flex space-x-2">
                 <label
                   htmlFor="description"
@@ -248,10 +263,13 @@ function ModalNewElement(): JSX.Element {
                   name="description"
                   id="description"
                   rows={5}
-                  className="bg-gray-50 border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500"
+                  className=" border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                
+              
                 ></textarea>
               </div>
             </div>
+            
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit">Submit</Button>
