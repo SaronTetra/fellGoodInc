@@ -1,4 +1,5 @@
-import { Client, Entity, Schema } from "redis-om";
+/* eslint-disable no-unused-vars */
+import { Client, Entity, Repository, Schema } from "redis-om";
 
 const client = new Client();
 
@@ -63,3 +64,17 @@ let categorySchema = new Schema(
     dataStructure: "JSON",
   }
 );
+
+export async function createEventIndex() {
+  await connect();
+
+  const eventRepository = new Repository(eventSchema, client);
+  await eventRepository.createIndex();
+}
+
+export async function getAllEvents() {
+  await connect();
+
+  const eventRepository = new Repository(eventSchema, client);
+  const events = await eventRepository.search().return.all();
+}
