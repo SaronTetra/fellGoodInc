@@ -23,9 +23,10 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
-import sendModal from "../../lib/redis";
+import {createEvent} from "../../lib/redis";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
+import Header from "../components/header";
 
 export default function Index(): JSX.Element {
   return (
@@ -36,6 +37,7 @@ export default function Index(): JSX.Element {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <SidebarProvider>
+        <Header/>
         <div className="flex dark:bg-gray-900 h-screen w-screen">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
@@ -80,7 +82,6 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={BiBuoy}>
             Help
           </Sidebar.Item>
-          <DarkThemeToggle />
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
@@ -199,13 +200,11 @@ function ModalNewElement(): JSX.Element {
       description:event.target.description.value,
       image:event.target.photo.value,
       city:event.target.where.value,
-      address: "twoja stara",
+      address: event.target.adres.value,
       categories:[event.target.email.value]
 
 
     })
-
-  //  const formData = Object.fromEntries(form.entries());
     console.log(form);
    
     const results=sendModal(form);
@@ -265,12 +264,12 @@ function ModalNewElement(): JSX.Element {
                   required
                 ></input>
               </div>
-              <div className="flex space-x-11 ">
+              <div className="flex space-x-14 ">
                 <label
                   htmlFor="where"
                   className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Where
+                  City
                 </label>
                 <input
                   type="text"
@@ -280,17 +279,17 @@ function ModalNewElement(): JSX.Element {
                   required
                 ></input>
               </div>
-              <div className="flex  space-x-1">
+              <div className="flex  space-x-7">
                 <label
                   htmlFor="competence"
                   className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Competence{" "}
+                  Address{" "}
                 </label>
                 <input
                   type="text"
-                  name="competence "
-                  id="competence "
+                  name="adres"
+                  id="adres"
                   className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 ></input>
               </div>
@@ -310,20 +309,8 @@ function ModalNewElement(): JSX.Element {
                 ></input>
               </div>
 
-              <div className="flex ">
-                <label
-                  htmlFor="type"
-                  className=" py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  How many people
-                </label>
-                <input
-                  type="text"
-                  name="type"
-                  id="type"
-                  className="clear-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                ></input>
-              </div>
+        
+              
               <div className="flex space-x-2">
                 <label
                   htmlFor="description"
@@ -339,17 +326,28 @@ function ModalNewElement(): JSX.Element {
                 ></textarea>
               </div>
             </div>
-
+<Modal.Footer>
           <Button type="submit"
           >
             Submit
           </Button>
-        
+          </Modal.Footer>
         </form>
       </Modal>
     </>
   );
 }
+ async function sendModal(modalObject:any) {
+  console.log(modalObject)
+  const res = fetch("/api/createEvent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: modalObject,
+  });
+  const result =   await (await res).json();
+  console.log(result);
+}
+
 
 function FooterExample(): JSX.Element {
   return (

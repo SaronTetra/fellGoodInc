@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { Client, Entity, Repository, Schema } from "redis-om";
+import { Client, Entity, Schema } from "redis-om";
 
 const client = new Client();
 
 async function connect() {
+  console.log(client)
   if (!client.isOpen()) {
     await client.open(process.env.REDIS_URL);
   }
@@ -17,7 +18,6 @@ class Category extends Entity {}
 let userSchema = new Schema(
   User,
   {
-    id: { type: "number" },
     name: { type: "text" },
     isInstitution: { type: "boolean" },
     description: { type: "text" },
@@ -30,7 +30,6 @@ let userSchema = new Schema(
 let eventSchema = new Schema(
   Event,
   {
-    id: { type: "number" },
     name: { type: "text" },
     org: { type: "number" },
     description: { type: "text" },
@@ -68,23 +67,43 @@ let categorySchema = new Schema(
 export async function createEventIndex() {
   await connect();
 
-  const eventRepository = new Repository(eventSchema, client);
+  const eventRepository = client.fetchRepository(eventSchema);
   await eventRepository.createIndex();
 }
 
 export async function getAllEvents() {
   await connect();
 
-  const eventRepository = new Repository(eventSchema, client);
+  const eventRepository = client.fetchRepository(eventSchema);
   const events = await eventRepository.search().return.all();
+
+  return events;
 }
 
-export default async function sendModal(modalObject) {
-  const res = fetch("api/createEvent", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(modalObject),
-  });
-  const result = await (await res).json;
-  console.log(result);
+export async function createEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = eventRepository.createEntity(data);
+  console.log(event)
+  console.log("qwe")
+  const id = await eventRepository.save(event);
+  return id;
 }
+
+export async function getEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = eventRepository.fetch(data);
+  return event;
+}
+
+export async function deleteEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  await eventRepository.remove(data);
+}
+
+

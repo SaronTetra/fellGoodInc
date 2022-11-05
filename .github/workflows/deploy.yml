@@ -1,8 +1,11 @@
 name: remote ssh command
 
 on:
-  push:
-      branches: [ "main" ]
+  workflow_run:
+    workflows: [ "Docker Image CI" ]
+    branches: [ main ]
+    types:
+      - completed
 
 jobs:
   deploy:
