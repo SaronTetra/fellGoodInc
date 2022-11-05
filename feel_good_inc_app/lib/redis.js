@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { Client, Entity, Repository, Schema } from "redis-om";
-import {data} from "autoprefixer";
 
 const client = new Client();
 
