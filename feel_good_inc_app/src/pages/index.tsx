@@ -212,12 +212,12 @@ function ModalNewElement(): JSX.Element {
   return (
     <>
       <Button onClick={() => setOpen(true)}>Set new events</Button>
-      <Modal show={isOpen}>
+      <Modal show={isOpen} onClose={() => setOpen(false)}>
         <Modal.Header>CreateEvent</Modal.Header>
         <form onSubmit={handleSubmit}>
-          
+        <Modal.Body>
             <div className="space-y-3">
-              <div className="flex space-x-12 ">
+              <div className="flex space-x-12 space-y-3 ">
                 <label
                   htmlFor="name"
                   className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -324,6 +324,7 @@ function ModalNewElement(): JSX.Element {
                 ></textarea>
               </div>
             </div>
+           </Modal.Body>
 <Modal.Footer>
           <Button type="submit"
           >
