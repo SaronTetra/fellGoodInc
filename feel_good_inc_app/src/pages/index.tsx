@@ -15,10 +15,9 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
-// import EventsCarousel from "../components/EventsCarousel";
-import About from "../components/About";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
+import EventsCarousel from "../components/EventsCarousel";
 
 export default function Index(): JSX.Element {
   return (
@@ -99,7 +98,7 @@ function HomePage(): JSX.Element {
         {/* <EventsCarousel /> */}
       </section>
       <section>
-        <About />
+        <EventsCarousel />
       </section>
       <section>
         <header>

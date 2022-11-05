@@ -1,10 +1,5 @@
 import { Carousel } from "flowbite-react";
-import { GetServerSideProps } from "next";
-import { FC } from "react";
-
-type Events = {
-  events: Event[]
-}
+import { FC, useState, useEffect } from "react";
 
 type Event = {
   entityId: string
@@ -18,40 +13,40 @@ type Event = {
   categories: string[],
 }
 
-const EventsCarousel: FC<Events> = ({events}) => {
+const EventsCarousel: FC<Event> = () => {
+
+  const [events, setEvents] = useState([])
+
+  useEffect(() => {
+      fetch('/api/events').then((res) => {
+          res.json().then((data) => {
+              console.log(data)
+              setEvents(data['events'])
+          })
+      });
+
+  }, [])
+
     return (
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
       <Carousel>
+        {events.map((event: Event) => (
         <div className="flex content-center justify-center h-max">
-        {events.map((event) => (
           <div>
             <img
-              className="w-1/5 px-2"
+              className="w-auto h-3/6 px-2 pb-3"
               alt="..."
               src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
             />
-            <div>
+            <div className="text-gray-200 h-2/6">
               <h1>{event.name}</h1>
             </div>
           </div>
-        ))}
         </div>
+        ))}
       </Carousel>
     </div>
     );
   };
 
-  export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = await fetch('/api/events')
-    console.log(res)
-    const events = await res.json()
-    console.log(events)
-  
-    return {
-      props: {
-        events,
-      },
-    }
-  }
-  
   export default EventsCarousel;
