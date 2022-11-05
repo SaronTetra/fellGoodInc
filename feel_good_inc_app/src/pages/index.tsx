@@ -15,7 +15,7 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
-import EventsCarousel from "../components/EventsCarousel";
+// import EventsCarousel from "../components/EventsCarousel";
 import About from "../components/About";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
