@@ -126,7 +126,7 @@ function ModalNewElement(): JSX.Element {
 
     const form = JSON.stringify({
       name: event.target.name.value,
-      org: Math.floor(Math.random() * 1000),
+      org: event.target.email.value,
       description: event.target.description.value,
       image: event.target.photo.value,
       city: event.target.where.value,
@@ -137,6 +137,7 @@ function ModalNewElement(): JSX.Element {
 
     const results = sendModal(form);
     console.log(results);
+    setOpen(false)
   };
   return (
     <>
@@ -149,7 +150,7 @@ function ModalNewElement(): JSX.Element {
               <div className="flex space-x-12 space-y-3 ">
                 <label
                   htmlFor="name"
-                  className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="py-4  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Name
                 </label>
@@ -161,15 +162,15 @@ function ModalNewElement(): JSX.Element {
                   required
                 ></input>
               </div>
-              <div className="flex space-x-12 ">
+              <div className="flex space-x-14 ">
                 <label
                   htmlFor="email"
                   className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Email
+                  User
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   id="email"
                   className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
