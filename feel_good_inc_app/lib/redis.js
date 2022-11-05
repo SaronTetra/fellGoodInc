@@ -36,6 +36,8 @@ let eventSchema = new Schema(
     city: { type: "text" },
     address: { type: "text" },
     categories: { type: "string[]" },
+    attendees: { type: "number" },
+    isHidden: { type: "boolean" },
   },
   {
     dataStructure: "JSON",
@@ -135,4 +137,24 @@ export async function createUser(data) {
   const user = userRepository.createEntity(data);
   const id = await userRepository.save(user);
   return id;
+}
+
+export async function addAttendee(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = await eventRepository.fetch(data);
+  event.attendees = event.attendees + 1;
+  const id = await eventRepository.save(event);
+
+  return event.attendees;
+}
+
+export async function hideEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = await eventRepository.fetch(data);
+  event.isHidden = true;
+  const id = await eventRepository.save(event);
 }
