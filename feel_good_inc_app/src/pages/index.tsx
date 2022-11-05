@@ -31,7 +31,7 @@ export default function Index(): JSX.Element {
       </Head>
       <SidebarProvider>
         <Header />
-        <div className="flex dark:bg-gray-900 h-screen w-screen">
+        <div className="flex dark:bg-gray-900 w-full">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
           </main>
@@ -274,7 +274,7 @@ async function sendModal(modalObject: any) {
 function FooterExample(): JSX.Element {
   return (
     <Footer container>
-      <div className="w-full sm:flex sm:items-center sm:justify-between">
+      <div className="w-full sm:flex sm:items-center sm:justify-between mb-0 pb-0">
         <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
           <Footer.Icon href="#" icon={BsFacebook} />
