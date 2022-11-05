@@ -54,7 +54,7 @@ const Header: FC<Record<string, never>> = function () {
                         width="24"
                     />
                     <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
-            Flowbite
+            FeelGoodInc
           </span>
                 </Navbar.Brand>
                 <div className="flex md:order-2">
