@@ -19,7 +19,10 @@ import {
 } from "react-icons/hi";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
+import Event from "../components/events";
 import { SidebarProvider } from "../context/SidebarContext";
+import { title } from "process";
+import Events from "../components/events";
 
 export default function Index(): JSX.Element {
   return (
@@ -106,7 +109,10 @@ function HomePage(): JSX.Element {
             Top Events
           </h2>
         </header>
-        <CarouselExample />
+        <Events />
+      </section>
+      <section>
+
       </section>
       <section>
         <header>
@@ -126,11 +132,7 @@ function CarouselExample(): JSX.Element {
       <Carousel>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <div className="flex content-center justify-center h-max">
-          <img
-            className="w-1/5 px-2"
-            alt="..."
-            src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          />
+          <Event eventData={imageSrc="https://flowbite.com/docs/images/carousel/carousel-2.svg", title="Test"}/>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="w-1/5 px-2"
