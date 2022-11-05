@@ -102,3 +102,12 @@ export async function deleteEvent(data) {
   const eventRepository = client.fetchRepository(eventSchema);
   await eventRepository.remove(data);
 }
+
+export async function createCategory(data) {
+  await connect();
+
+  const categoryRepository = client.fetchRepository(categorySchema);
+  const category = categoryRepository.createEntity(data);
+  const id = await categoryRepository.save(category);
+  return id;
+}
