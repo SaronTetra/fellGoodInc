@@ -78,3 +78,13 @@ export async function getAllEvents() {
   const eventRepository = new Repository(eventSchema, client);
   const events = await eventRepository.search().return.all();
 }
+
+export default async function sendModal(modalObject) {
+  const res = fetch("api/createEvent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(modalObject),
+  });
+  const result = await (await res).json;
+  console.log(result);
+}

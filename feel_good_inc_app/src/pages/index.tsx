@@ -1,14 +1,21 @@
-import { Button, Carousel, DarkThemeToggle,  Modal } from "flowbite-react";
+import { randomInt } from "crypto";
+import {
+  Button,
+  Carousel,
+  DarkThemeToggle,
+  Footer,
+  Modal,
+} from "flowbite-react";
 import Head from "next/head";
 import { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
-// import {
-//   BsDribbble,
-//   BsFacebook,
-//   BsGithub,
-//   BsInstagram,
-//   BsTwitter,
-// } from "react-icons/bs";
+import {
+  BsDribbble,
+  BsFacebook,
+  BsGithub,
+  BsInstagram,
+  BsTwitter,
+} from "react-icons/bs";
 import {
   HiArrowSmRight,
   HiChartPie,
@@ -16,6 +23,7 @@ import {
   HiTable,
   HiViewBoards,
 } from "react-icons/hi";
+import sendModal from "../../lib/redis";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
 
@@ -57,6 +65,9 @@ function ActualSidebar(): JSX.Element {
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
             Sign Up
+          </Sidebar.Item>
+          <Sidebar.Item href="#" icon={HiTable} >
+            Add New Event
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
@@ -177,75 +188,182 @@ function CarouselExample(): JSX.Element {
 }
 function ModalNewElement(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
-
- return (
-      <><Button onClick={() => setOpen(true)}>Set new events</Button><Modal show={isOpen} onClose={() => setOpen(false)}>
-     <Modal.Header>CreateEvent</Modal.Header>
-     <Modal.Body>
-       <div className="space-y-3">
-         
-         <div className="flex space-x-12 ">
-                       <label htmlFor="name" className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-                       <input type="text" name="password" id="password"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
-                   </div>
-                   <div className="flex space-x-12 ">
-                       <label htmlFor="email" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-                       <input type="email" name="email" id="email" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
-                   </div>
-                   <div className="flex space-x-14 ">
-                       <label htmlFor="date" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
-                       <input type="date" name="date" id="date"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
-                   </div >
-                   <div className="flex space-x-11 ">
-                       <label htmlFor="where" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Where</label>
-                       <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
-                   </div>
-                   <div className="flex  space-x-1">
-                       <label htmlFor="competence" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Competence </label>
-                       <input type="text" name="competence " id="competence " className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ></input>
-                   </div>
-                  
-                   <div className="flex space-x-12">   
-                       <label htmlFor="photo" className=" py-2 block  mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Background photo</label>
-                       <input type="file" name="photo" id="photo" className=" px-5" ></input>
-                  </div>
-                   
-                   <div className="flex ">
-                       <label htmlFor="type" className=" py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">How many people</label>
-                       <input type="text" name="type" id="type" className="clear-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ></input>
-                   </div>
-                   <div className="flex space-x-2">
-                       <label htmlFor="description" className="py-10 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
-                       <textarea  name="description" id="description"  rows={5}  className="bg-gray-50 border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500" ></textarea>
-                   </div>
-        
-       </div>
-     </Modal.Body>
-     <Modal.Footer>
-       <Button onClick={() => setOpen(false)}>Submit</Button>
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    console.log(event)
+   
+    const form=JSON.stringify({
       
-     </Modal.Footer>
-   </Modal></> 
- 
- );
+      name: event.target.name.value,
+      org:Math.floor(Math.random() * 1000),
+      description:event.target.description.value,
+      image:event.target.photo.value,
+      city:event.target.where.value,
+      address: "twoja stara",
+      categories:[event.target.email.value]
+
+
+    })
+
+  //  const formData = Object.fromEntries(form.entries());
+    console.log(form);
+   
+    const results=sendModal(form);
+    console.log(results)
+   
+  };
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Set new events</Button>
+      <Modal show={isOpen}>
+        <Modal.Header>CreateEvent</Modal.Header>
+        <form onSubmit={handleSubmit}>
+          
+            <div className="space-y-3">
+              <div className="flex space-x-12 ">
+                <label
+                  htmlFor="name"
+                  className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-12 ">
+                <label
+                  htmlFor="email"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-14 ">
+                <label
+                  htmlFor="date"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex space-x-11 ">
+                <label
+                  htmlFor="where"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Where
+                </label>
+                <input
+                  type="text"
+                  name="where"
+                  id="where"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required
+                ></input>
+              </div>
+              <div className="flex  space-x-1">
+                <label
+                  htmlFor="competence"
+                  className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Competence{" "}
+                </label>
+                <input
+                  type="text"
+                  name="competence "
+                  id="competence "
+                  className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                ></input>
+              </div>
+
+              <div className="flex space-x-12">
+                <label
+                  htmlFor="photo"
+                  className=" py-2 block  mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Background photo
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  className=" px-5"
+                ></input>
+              </div>
+
+              <div className="flex ">
+                <label
+                  htmlFor="type"
+                  className=" py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  How many people
+                </label>
+                <input
+                  type="text"
+                  name="type"
+                  id="type"
+                  className="clear-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                ></input>
+              </div>
+              <div className="flex space-x-2">
+                <label
+                  htmlFor="description"
+                  className="py-10 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  id="description"
+                  rows={5}
+                  className="bg-gray-50 border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500"
+                ></textarea>
+              </div>
+            </div>
+
+          <Button type="submit"
+          >
+            Submit
+          </Button>
+        
+        </form>
+      </Modal>
+    </>
+  );
 }
 
-// function FooterExample(): JSX.Element {
-//   return (
-//     <Footer container>
-//       <div className="w-full sm:flex sm:items-center sm:justify-between">
-//         <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
-//         <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-//           <Footer.Icon href="#" icon={BsFacebook} />
-//           <Footer.Icon href="#" icon={BsInstagram} />
-//           <Footer.Icon href="#" icon={BsTwitter} />
-//           <Footer.Icon href="#" icon={BsGithub} />
-//           <Footer.Icon href="#" icon={BsDribbble} />
-//         </div>
-//       </div>
-//     </Footer>
-//   );
-// }
-
-
-
+function FooterExample(): JSX.Element {
+  return (
+    <Footer container>
+      <div className="w-full sm:flex sm:items-center sm:justify-between">
+        <Footer.Copyright href="#" by="Proteus Belivers" year={2022} />
+        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+          <Footer.Icon href="#" icon={BsFacebook} />
+          <Footer.Icon href="#" icon={BsInstagram} />
+          <Footer.Icon href="#" icon={BsTwitter} />
+          <Footer.Icon href="#" icon={BsGithub} />
+          <Footer.Icon href="#" icon={BsDribbble} />
+        </div>
+      </div>
+    </Footer>
+  );
+}
