@@ -103,7 +103,7 @@ function HomePage(): JSX.Element {
         {/* <EventsCarousel /> */}
       </section>
       <section>
-        <EventsCarousel />
+        <EventsCarousel entityId={""} id={0} name={""} org={0} description={""} image={""} city={""} address={""} categories={[]} />
       </section>
       <section>
         <header>
