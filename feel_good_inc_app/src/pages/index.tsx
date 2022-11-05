@@ -1,4 +1,4 @@
-import { Carousel, Footer } from "flowbite-react";
+import {Carousel, DarkThemeToggle, Footer} from "flowbite-react";
 import Head from "next/head";
 import { BiBuoy } from "react-icons/bi";
 import {
@@ -11,13 +11,10 @@ import {
 import {
   HiArrowSmRight,
   HiChartPie,
-  HiInbox,
-  HiShoppingBag,
+  HiPlus,
   HiTable,
-  HiUser,
   HiViewBoards,
 } from "react-icons/hi";
-import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { SidebarProvider } from "../context/SidebarContext";
 
@@ -30,7 +27,6 @@ export default function Index(): JSX.Element {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <SidebarProvider>
-        <Header />
         <div className="flex dark:bg-gray-900 h-screen w-screen">
           <main className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]">
             <HomePage />
@@ -52,17 +48,8 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={HiChartPie}>
             Dashboard
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiViewBoards}>
-            Kanban
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiInbox}>
-            Inbox
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiUser}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiShoppingBag}>
-            Products
+          <Sidebar.Item href="#" icon={HiPlus}>
+            AddUser
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>
             Sign In
@@ -76,11 +63,12 @@ function ActualSidebar(): JSX.Element {
             Upgrade to Pro
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiViewBoards}>
-            Documentation
+            Settings
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={BiBuoy}>
             Help
           </Sidebar.Item>
+          <DarkThemeToggle />
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
