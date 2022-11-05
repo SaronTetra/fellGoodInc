@@ -13,7 +13,7 @@ export default function Index(): JSX.Element {
    
     return (
         
-      <div  style={{width:"300px", margin:"auto",paddingTop:"20%"
+      <div  style={{width:"300px", margin:"auto",paddingTop:"2%"
    }} >
        <Image
     
