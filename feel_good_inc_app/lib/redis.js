@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { Client, Entity, Repository, Schema } from "redis-om";
+import { Client, Entity, Schema } from "redis-om";
 
 const client = new Client();
 
 async function connect() {
+  console.log(client);
   if (!client.isOpen()) {
     await client.open(process.env.REDIS_URL);
   }
@@ -17,7 +18,6 @@ class Category extends Entity {}
 let userSchema = new Schema(
   User,
   {
-    id: { type: "number" },
     name: { type: "text" },
     isInstitution: { type: "boolean" },
     description: { type: "text" },
@@ -30,7 +30,6 @@ let userSchema = new Schema(
 let eventSchema = new Schema(
   Event,
   {
-    id: { type: "number" },
     name: { type: "text" },
     org: { type: "number" },
     description: { type: "text" },
@@ -82,10 +81,36 @@ export async function getAllEvents() {
 }
 
 export async function createEvent(data) {
-    await connect();
+  await connect();
 
-    const eventRepository = client.fetchRepository(eventSchema);
-    const event = eventRepository.createEntity(data);
-    const id = await eventRepository.save(event);
-    return id;
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = eventRepository.createEntity(data);
+  console.log(event);
+  console.log("qwe");
+  const id = await eventRepository.save(event);
+  return id;
+}
+
+export async function getEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = eventRepository.fetch(data);
+  return event;
+}
+
+export async function deleteEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  await eventRepository.remove(data);
+}
+
+export async function createCategory(data) {
+  await connect();
+
+  const categoryRepository = client.fetchRepository(categorySchema);
+  const category = categoryRepository.createEntity(data);
+  const id = await categoryRepository.save(category);
+  return id;
 }
