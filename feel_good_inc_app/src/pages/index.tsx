@@ -87,10 +87,10 @@ function HomePage(): JSX.Element {
       <section>
         <header>
           <h1 className="mb-6 text-5xl font-extrabold dark:text-gray-200">
-            Feel Good Inc
+            Feel Good
           </h1>
           <p className="mb-6 text-2xl font-extrabold dark:text-gray-200">
-            Feel Good Inc
+            Feel Good
           </p>
         </header>
       </section>
