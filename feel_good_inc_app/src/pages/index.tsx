@@ -72,7 +72,7 @@ function ActualSidebar(): JSX.Element {
           <Sidebar.Item href="#" icon={HiViewBoards}>
             Settings
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={BiBuoy}>
+          <Sidebar.Item href="/help" icon={BiBuoy}>
             Help
           </Sidebar.Item>
         </Sidebar.ItemGroup>
