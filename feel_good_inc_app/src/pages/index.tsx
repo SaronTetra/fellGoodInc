@@ -1,5 +1,6 @@
-import { Carousel, Footer } from "flowbite-react";
+import { Button, Carousel, Footer, Modal } from "flowbite-react";
 import Head from "next/head";
+import { useState } from "react";
 import { BiBuoy } from "react-icons/bi";
 import {
   BsDribbble,
@@ -114,7 +115,7 @@ function HomePage(): JSX.Element {
             Footer
           </h2>
         </header>
-        <FooterExample />
+        <ModalNewElement />
       </section>
     </>
   );
@@ -186,6 +187,60 @@ function CarouselExample(): JSX.Element {
     </div>
   );
 }
+function ModalNewElement(): JSX.Element {
+  const [isOpen, setOpen] = useState(false);
+
+ return (
+      <><Button onClick={() => setOpen(true)}>Set new events</Button><Modal show={isOpen} onClose={() => setOpen(false)}>
+     <Modal.Header>CreateEvent</Modal.Header>
+     <Modal.Body>
+       <div className="space-y-3">
+         
+         <div className="flex space-x-12 ">
+                       <label htmlFor="name" className="py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
+                       <input type="text" name="password" id="password"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
+                   </div>
+                   <div className="flex space-x-12 ">
+                       <label htmlFor="email" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+                       <input type="email" name="email" id="email" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
+                   </div>
+                   <div className="flex space-x-14 ">
+                       <label htmlFor="date" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
+                       <input type="date" name="date" id="date"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
+                   </div >
+                   <div className="flex space-x-11 ">
+                       <label htmlFor="where" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Where</label>
+                       <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required></input>
+                   </div>
+                   <div className="flex  space-x-1">
+                       <label htmlFor="competence" className=" py-2 block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Competence </label>
+                       <input type="text" name="competence " id="competence " className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ></input>
+                   </div>
+                  
+                   <div className="flex space-x-12">   
+                       <label htmlFor="photo" className=" py-2 block  mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Background photo</label>
+                       <input type="file" name="photo" id="photo" className=" px-5" ></input>
+                  </div>
+                   
+                   <div className="flex space-x-0">
+                       <label htmlFor="type" className=" py-2  block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">How many people</label>
+                       <input type="text" name="type" id="type" className="clear-left bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " ></input>
+                   </div>
+                   <div className="flex space-x-2">
+                       <label htmlFor="description" className="py-10 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
+                       <textarea  name="description" id="description"  rows="5"  className="bg-gray-50 border width=20% border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500" ></textarea>
+                   </div>
+        
+       </div>
+     </Modal.Body>
+     <Modal.Footer>
+       <Button onClick={() => setOpen(false)}>Submit</Button>
+      
+     </Modal.Footer>
+   </Modal></> 
+ 
+ );
+}
 
 function FooterExample(): JSX.Element {
   return (
@@ -203,3 +258,6 @@ function FooterExample(): JSX.Element {
     </Footer>
   );
 }
+
+
+
