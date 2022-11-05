@@ -88,6 +88,14 @@ export async function createEvent(data) {
   return id;
 }
 
+export async function getEvent(data) {
+  await connect();
+
+  const eventRepository = client.fetchRepository(eventSchema);
+  const event = eventRepository.fetch(data);
+  return event;
+}
+
 export async function deleteEvent(data) {
   await connect();
 
