@@ -1,0 +1,6 @@
+import { getAllEvents } from '../../lib/redis';
+
+export default async function handler(req, res) {
+    const events = await getAllEvents();
+    res.status(200).json({events});
+}

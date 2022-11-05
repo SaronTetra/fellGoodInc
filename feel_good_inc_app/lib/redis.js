@@ -55,11 +55,25 @@ let reviewSchema = new Schema(
 );
 
 let categorySchema = new Schema(
-  Category,
-  {
-    name: { type: "string" },
-  },
-  {
-    dataStructure: "JSON",
-  }
+    Category, {
+        name: {type: 'string'},
+    },
+    {
+        dataStructure: 'JSON',
+    }
 );
+
+export async function createEventIndex() {
+    await connect();
+
+    const eventRepository = new Repository(eventSchema, client);
+    await eventRepository.createIndex();
+}
+
+export async function getAllEvents() {
+    await connect();
+
+    const eventRepository = new Repository(eventSchema, client);
+    const events = await eventRepository.search()
+        .return.all();
+}
