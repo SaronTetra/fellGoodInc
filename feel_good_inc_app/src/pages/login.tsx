@@ -1,5 +1,6 @@
-import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
+
+import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 export default function Index(): JSX.Element {
    let router=useRouter()
@@ -13,6 +14,13 @@ export default function Index(): JSX.Element {
         
       <div  style={{width:"300px", margin:"auto",paddingTop:"20%"
    }} >
+       <Image
+    
+    src="https://img.freepik.com/darmowe-wektory/ilustracja-drzenie-rak-umowy_53876-5892.jpg?size=626&ext=jpg&ga=GA1.2.1322183877.1667641163&semt=sph"
+    width={2250}
+    height={1390}
+    layout="responsive"
+/>
        <form  onSubmit={ redirect}>
         <div className="mb-6">
           <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
